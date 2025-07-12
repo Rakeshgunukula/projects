@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  height: 100vh;
+}
+
+.clock {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  background: #111;
+  border: 8px solid #fff;
+  border-radius: 50%;
+}
+
+.hand {
+  position: absolute;
+  width: 50%;
+  height: 2px;
+  background: #fff;
+  top: 50%;
+  left: 50%;
+  transform-origin: left;
+  transform: rotate(90deg);
+  transition: transform 0.05s ease-in-out;
+}
+
+.hour {
+  width: 30%;
+  height: 4px;
+  background: #f00;
+}
+
+.minute {
+  width: 40%;
+  height: 3px;
+  background: #0f0;
+}
+
+.second {
+  width: 45%;
+  height: 2px;
+  background: #00f;
+}
+
+.center-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Numbers Around Circle */
+.number {
+  position: absolute;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  top: 50%;
+  left: 50%;
+  transform: rotate(calc(var(--n) * 30deg))
+             translateY(-130px)
+             rotate(calc(var(--n) * -30deg));
+}
+
+    </style>
+</head>
+<body>
+    <div class="clock">
+  <!-- Numbers -->
+  <div class="number" style="--n:1">1</div>
+  <div class="number" style="--n:2">2</div>
+  <div class="number" style="--n:3">3</div>
+  <div class="number" style="--n:4">4</div>
+  <div class="number" style="--n:5">5</div>
+  <div class="number" style="--n:6">6</div>
+  <div class="number" style="--n:7">7</div>
+  <div class="number" style="--n:8">8</div>
+  <div class="number" style="--n:9">9</div>
+  <div class="number" style="--n:10">10</div>
+  <div class="number" style="--n:11">11</div>
+  <div class="number" style="--n:12">12</div>
+
+  <!-- Clock Hands -->
+  <div class="hand hour" id="hourHand"></div>
+  <div class="hand minute" id="minuteHand"></div>
+  <div class="hand second" id="secondHand"></div>
+
+  <!-- Center Dot -->
+  <div class="center-dot"></div>
+</div>
+<script>
+    function updateClock() {
+  const now = new Date();
+
+  const seconds = now.getSeconds();
+  const minutes = now.getMinutes();
+  const hours = now.getHours() % 12;
+
+  const secondDeg = seconds * 6;
+  const minuteDeg = minutes * 6 + (seconds / 60) * 6;
+  const hourDeg = hours * 30 + (minutes / 60) * 30;
+
+  document.getElementById("secondHand").style.transform = `rotate(${secondDeg}deg)`;
+  document.getElementById("minuteHand").style.transform = `rotate(${minuteDeg}deg)`;
+  document.getElementById("hourHand").style.transform = `rotate(${hourDeg}deg)`;
+}
+
+setInterval(updateClock, 1000);
+updateClock(); // call once at start
+
+</script>
+</body>
+</html>

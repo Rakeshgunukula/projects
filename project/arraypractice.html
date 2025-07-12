@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        body{
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            background:#333566;
+            height:100vh;
+        }
+        .container{
+            position:relative;
+            border:1px solid #ccc;
+            width:400px;
+            cursor:pointer;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            background:#000;
+            border-radius:10px;
+            border:1px solid #ccc;
+            color:white;
+            box-shadow:0 0 10px rgba(0,0,0,0.5);
+            padding:10px;
+            height:2px;
+            transition: height 1s ease, background 1s ease;
+        }
+        .container:hover{
+            height:400px;
+            padding:10px;
+            color:black;
+            background:#ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    </div>
+    <script>
+        const cars = ['Rolls Royce', 'Ferrari', 'Buggati', 'Mercedes'];
+        const container = document.querySelector('.container');
+        cars.forEach((car, index) => {
+            let result = `${car} => ${index}`;
+            container.innerHTML = result;
+        });
+    </script>
+</body>
+</html>

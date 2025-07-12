@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clone Website</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        body{
+            background:#ccc;
+        }
+        .clone-header{
+            width:100%;
+            background:#ae6a6a;
+            height:100px;
+            padding:20px;
+        }
+        .main-header{
+            width:100%;
+            height:auto;
+            padding:10px 35px;
+            flex-wrap: wrap;
+            background:#e06fcf;
+            display: flex;
+        }
+        .item{
+            padding:10px 20px;
+            width:auto;
+            border-right: 2px solid #fff;
+            height:auto;
+        
+        }
+        .item .image{
+            width:200px;
+            height:200px;
+            position: relative;
+        }
+        .item .image img{
+            position: absolute;
+            width:100%;
+            height:100%;
+            padding:10px;
+            border:2px solid #fff;
+            border-radius:1px;
+        }
+        .item .content{
+            display : flex;
+            flex-direction: column;
+            gap:20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="clone-header">
+        <div class="js-container"></div>
+    </div>
+    <div class="main-header js-main-header">
+        <div class="item">
+            <div class="image">
+                <img src="rolls-royce-1.jpeg">
+            </div>
+            <div class="content">
+                <h3>Rolls Royce Phantom</h3>
+                <h4>Model : 2020</h4>
+                <h4>&#8377;10 cr</h4>
+                <button class="add-to-cart">Add-to-cart</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="main.js">
+    </script>
+</body>
+</html>

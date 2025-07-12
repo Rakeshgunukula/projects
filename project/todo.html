@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Dynamic Todo List</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        body{
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            height:100vh;
+            background:linear-gradient(45deg,navy,rgb(93, 8, 8));
+        }
+        .container{
+            width:auto;
+            padding:20px;
+            padding:30px 20px;
+            height:auto;
+            background:linear-gradient(45deg,navy,rgb(93,8,8));
+            box-shadow: 2px 2px 30px  inset  #000;
+            border-radius:20px;
+            transition:all .5s ease;
+        }
+        .container samp{
+            color:gray;
+            text-shadow:0 0 10px gray, 0 0 20px gray;
+            font-size:1.2em;
+        }
+        .header-container {
+            transition:all .5s ease;
+            transform:scale(0);
+            opacity:0;
+
+        }
+        .header h3{
+            text-align: center;
+            margin-top: 30px;
+            letter-spacing: 2px;
+            font-size:1.4rem;
+            color:transparent;
+            -webkit-text-stroke:1px white;
+            filter:drop-shadow(0 0 10px white) drop-shadow(0 0 20px white);
+        }
+        .input-field{
+            margin-top: 30px;
+            display:flex;
+            gap:0;
+            box-shadow: 2px 2px 10px #000;
+        }
+        .input-field input{
+            width:110%;
+            padding:10px;
+            background:transparent;
+            border:1px solid gray;
+            border-top-left-radius:10px;
+            border-bottom-left-radius:10px;
+            color:gray;
+            text-shadow: 0 0 10px gray,0 0 20px gray;
+            outline:none;
+            letter-spacing: 2px;
+            border-right:none;
+        }
+        .input-field input::placeholder{
+            color:gray;
+            text-shadow:0 0 10px gray; 
+            letter-spacing: 4px;
+        
+        }
+        .input-field .todobtn{
+            width:50%;
+            background:seagreen;
+            padding:10px;
+            border:none;
+            color:white;
+            font-weight: bold;
+            letter-spacing: 3px;
+            cursor: pointer;
+            border-top-right-radius:10px;
+            border-bottom-right-radius:10px;
+        }
+        .input-field button:hover{
+            opacity:0.7;
+        }
+        ol{
+            padding:20px;
+            position: relative;
+        }
+        ol li{
+            margin-bottom:5px;
+            font-size:1.2em;
+            color:gray;
+            text-shadow: 0 0 10px gray, 0 0 20px gray;
+            border-bottom:2px solid #9f9;
+            padding:8px 4px;
+            position: relative;
+        }
+        li span{
+            position: absolute;
+            top:0;
+            right:0;
+            cursor: pointer;
+            padding:6px;
+        }
+        p{
+            text-align: center;
+            color:gray;
+            font-weight: bold;
+            letter-spacing: 1.6px;
+            transition:all .5s ease-in-out;
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <samp class="type-writer"></samp>
+        <div class="header-container">
+
+            <div class="header">
+                <h3>Add Your Task</h3>
+                <div class="input-field">
+                    <input type="text" placeholder="Enter Your Task">
+                    <button onclick="addTodo();" class="todobtn">Add</button>
+                </div>
+            </div>
+            <ol class="list-container">
+            </ol>
+        </div>
+        <p id="message">Deleted&#9989;</p>
+    </div>
+    <script type="module" src="todo.js" defer ></script>
+</body>
+</html>

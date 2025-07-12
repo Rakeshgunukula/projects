@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First-Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        body{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            background:transparent;
+            height:100vh;
+        }
+        .container{
+            position:relative;
+            width:400px;
+            height:450px;
+            overflow: hidden;
+            background:#ccc;
+            border-radius:10px;
+            box-shadow:2px 2px 6px #000;
+            padding:30px 20px;
+
+        }
+        .gamename {
+            text-align: center;
+            text-decoration: underline 2px solid black;
+
+        }
+        .btns{
+            position: relative;
+            display: flex;
+        }
+        .btns button{
+            width:80px;
+            height:80px;
+            border-radius:50%;
+            border:none;
+            background:#ccc;
+            box-shadow:2px 2px 5px #000;
+            margin:20px;
+        }
+        
+        .btns button img{
+            width:100%;
+            height:100%;
+            padding:10px;
+            cursor:pointer;
+        }
+        .btns button:hover{
+            opacity:0.9;
+        }
+        .btns button:active{
+            background:seagreen;
+        }
+        .gameresult{
+            text-align: center;
+            font-size:1.2rem;
+            margin: auto;
+            font-weight: bold;
+        }
+        .gamemove{
+            text-align: center;
+            margin:20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .moveelement{
+            width:60px;
+            height:60px;
+            background:#fff;
+            border-radius:50%;
+            border:none;
+            padding:10px;
+            margin-left:5px;
+        }
+        .gamescore{
+            text-align: center;
+            margin:22px auto;
+        }
+        .gamescore span{
+            font-weight: bold;
+            font-size:1rem;            
+        }
+        .gamebtns{
+            position: relative;
+            display: flex;
+        }
+        .gamebtns button{
+            width:50%;
+            margin:20px auto;
+            margin-left:10px;
+            border:none;
+            border-radius:10px;
+            padding:10px;
+            background:seagreen;
+            letter-spacing: 4px;
+            cursor:pointer;
+            font-weight: bold;
+        }
+        .gamebtns button:nth-child(2){
+            width:50%;
+            margin:20px auto;
+            margin-left:10px;
+            border:none;
+            border-radius:10px;
+            padding:10px;
+            background:#ccc;
+            border:2px solid red;
+            letter-spacing: 4px;
+            cursor:pointer;
+            font-weight: bold;
+        }
+       .gamebtns button:nth-child(1):active{
+            background: red;
+            color:#fff;
+        }
+        .fa-stop{
+            color:#fff;
+        }
+        .gamecontainer{
+            position: absolute;
+            transform: scale(0);
+            transition:all 3s ease-in-out;
+        }
+        .gamecontainer1{
+            position: absolute;
+            transform:scale(1);
+            transition:all 3s ease-in-out;
+        }
+        .box{
+            position: absolute;
+            width:50%;
+            left:0;
+            top:0;
+            background:black;
+            height:100%;
+            z-index: 1;
+            border-top-left-radius:10px;
+            border-bottom-left-radius:10px;
+            border-right:2px solid red;
+            transition:all 2s ease-in-out;
+        }
+        .box1{
+            position: absolute;
+            width:50%;
+            right:0;
+            top:0;
+            background:black;
+            height:100%;
+            z-index: 1;
+            border-top-right-radius:10px;
+            border-bottom-right-radius:10px;
+            border-left:2px solid red;
+            transition:all 2s ease-in-out;
+        }
+        .box2{
+            position: absolute;
+            width:50%;
+            left:0;
+            transform:translateX(-100%);
+            top:0;
+            background:black;
+            height:100%;
+            z-index: 1;
+            border-top-left-radius:10px;
+            border-bottom-left-radius:10px;
+            border-right:2px solid red;
+            transition:all 2s ease-in-out;
+        }
+        .box3{
+            position: absolute;
+            width:50%;
+            right:0;
+            transform:translateX(100%);
+            top:0;
+            background:black;
+            height:100%;
+            z-index: 1;
+            border-top-right-radius:10px;
+            border-bottom-right-radius:10px;
+            border-left:2px solid red;
+            transition:all 2s ease-in-out;
+        }
+        .ano .open{
+            background:seagreen;
+            border:none;
+            padding:13px 15px;
+            color:#fff;
+            letter-spacing:15px;
+            margin-top:30px;
+            width:100%;
+            border-radius:10px;
+            box-shadow: 2px 2px 5px black;
+            cursor: pointer;
+        }
+        .ano .open:hover{
+            opacity:0.8;
+        }
+        marquee{
+            background:white;
+            letter-spacing: 10px;
+            padding:10px;
+            border:none;
+            box-shadow: 2px 2px 5px black,2px 3px 5px black;
+            color:#000;
+            border-radius:10px;
+        }
+        .opentext{
+            position: relative;
+            perspective: 1000;
+            left:35px;
+            top:-10px;
+            display: flex;
+            flex-direction: column;
+        }
+        .opentext span{
+            margin:40px;
+            position:relative;
+            font-size:2rem;
+            transform-style: preserve-3d;
+            color:white;
+        }
+        .txt span{
+            color:red;
+        }
+        .autoenable{
+            text-align: center;
+            position: relative;
+            transform:translateY(100px);
+            transition:all 2s ease-in-out;
+        }
+        .autoenable1{
+            text-align: center;
+            position:relative;
+            transform:translateY(0);
+            transition:all 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="ano">
+    <div class="container jscontainer">
+        <div class="box">
+            <div class="opentext">
+                <span>O</span>
+                <span>P</span>
+                <span>E</span>
+                <span>N</span>
+            </div>
+        </div>
+        <div class="box1">
+            <div class="opentext txt">
+                <span>D</span>
+                <span>O</span>
+                <span>O</span>
+                <span>R</span>
+            </div>
+        </div>
+        <div class="gamecontainer js-game-container">
+            <div class="gamename">
+                <h2>Rock | Paper | Scissors</h2>
+            </div>
+            <div class="btns">
+                <button onclick="playgame('Rock')"><img src="rock.png"></button>
+                <button onclick="playgame('Paper')"><img src="paper.png"></button>
+                <button onclick="playgame('Scissors')"><img src="scissors.png"></button>
+            </div>
+            <div class="gameresult">
+                <marquee>Playgame</marquee>
+            </div>
+            <div class="gamemove"></div>
+            <div class="gamescore"></div>
+            <div class="gamebtns">
+                <button onclick="score.wins = 0;
+                                 score.losses = 0;
+                                 score.ties = 0;
+                                 score.played = 0;
+                                 localStorage.removeItem('score');
+                                 updateScoreElement();">Reset</button>
+                <button class="js-auto" onclick="autoPlay()">Autoplay</button>
+            </div>
+            <div class="autoenable js-enable">
+            </div>
+        </div>
+        
+    </div>
+    <button onclick="opendoor(); " class="open">Open</button>
+    </div>
+    <script>
+        //opendoor
+        //opendoor sound
+        function opendoorsound(){
+            const opensound = new Audio('mixkit-electric-whoosh-2596.wav');
+            opensound.play();
+        }
+        //closing door sound
+        function closedoorsound(){
+            const closedoor = new Audio('mixkit-cinematic-whoosh-fast-transition-1492.wav');
+            closedoor.play();
+        }
+        function opendoor(){
+            const openbtn = document.querySelector('.open');
+            const gameContainer = document.querySelector('.js-game-container');
+            const box = document.querySelector('.box');
+            const box1 = document.querySelector('.box1');
+            if(openbtn.innerHTML === 'Open'){
+                opendoorsound();
+                openbtn.innerHTML = `Close<i class="fa-solid fa-xmark"></i>`
+                openbtn.style.background = 'red';
+                box.classList.add('box2')
+                box1.classList.add('box3');
+                    gameContainer.classList.add('gamecontainer1');
+
+            }else {
+                openbtn.innerHTML = 'Open';
+                openbtn.style.background = 'seagreen';
+                closedoorsound();
+                box.classList.remove('box2');
+                box1.classList.remove('box3');
+                gameContainer.classList.remove('gamecontainer1');
+
+            }
+        }
+        let score = JSON.parse(localStorage.getItem('score'));
+        if(score === null){
+            score = {
+                wins: 0,
+                losses: 0,
+                ties: 0,
+                played: 0, 
+            };
+        };
+        updateScoreElement();
+        function playgame(playermove){
+                const computermove = pickcomputermove();
+                let result = '';
+                if(playermove === 'Rock'){
+                    if(computermove === 'Rock'){
+                        result = 'Tie';
+                    }else if(computermove === 'Paper'){
+                        result = 'You Lose';
+                    }else if(computermove === 'Scissors'){
+                        result = 'You Win';
+                    }
+                }else if(playermove === 'Paper'){
+                    if(computermove === 'Rock'){
+                        result = 'You Win';
+                    }else if(computermove === 'Paper'){
+                        result = 'Tie';
+                    }else if(computermove === 'Scissors'){
+                        result = 'You Lose';
+                    }
+                }else if(playermove === 'Scissors'){
+                    if(computermove === 'Rock'){
+                        result = 'You Lose';
+                    }else if(computermove === 'Paper'){
+                        result = 'You Win';
+                    }else if(computermove === 'Scissors'){
+                        result = 'Tie';
+                    }
+                }if(result === 'You Win'){
+                    score.wins = score.wins + 1;
+                    document.querySelector('.gameresult').style.color = 'seagreen';
+                    winningsound();
+                }else if(result === 'You Lose'){
+                    score.losses = score.losses + 1;
+                    loosesound();
+                    flashEffect();
+                    document.querySelector('.gameresult').style.color = 'red';
+                }else if(result === 'Tie'){
+                    score.ties = score.ties + 1;
+                    tiesound();
+                    document.querySelector('.gameresult').style.color = 'orange'
+                }
+                score.played = score.played + 1;
+                //localstorage
+                localStorage.setItem('score',JSON.stringify(score));
+                updateScoreElement();
+                document.querySelector('.gameresult').innerHTML = `<samp>${result}</samp>`
+            document.querySelector('.gamemove').innerHTML = `You <img src="${playermove}.png" class="moveelement"> | Oponent <img src="${computermove}.png" class="moveelement" >  `
+            }
+            //updatescore
+            function updateScoreElement(){
+                document.querySelector('.gamescore').innerHTML = `Wins : <span>${score.wins}</span> | Loss : <span>${score.losses}</span> | Ties : <span>${score.ties}</span> | Played : <span>${score.played}</span>`
+            }
+            //Autoplay
+            let isAutoplay = false;
+            let intervalId;
+            function autoPlay(){
+                const auto = document.querySelector('.js-auto');
+                const enable = document.querySelector('.js-enable');
+                if(!isAutoplay){
+                    enable.classList.add('autoenable1');
+                    enable.innerHTML = `<samp>AutoPlay is enabled</samp>`;
+                    intervalId = setInterval(()=>{
+                        const playermove = pickcomputermove();
+                        playgame(playermove);
+
+                    },1000);
+                    isAutoplay = true;
+                    auto.style.background = 'red';
+                    auto.innerHTML = `<i class="fa-solid fa-stop"></i>`
+                }else {
+                    clearInterval(intervalId);
+                    isAutoplay = false;
+                    auto.style.background = '#ccc';
+                    enable.classList.remove('autoenable1');
+                    enable.innerHTML = `<samp>AutoPlay is disabled</samp>`
+                    auto.innerHTML = `AutoPlay`;
+                }
+            }
+            //flash
+            function flashEffect(){
+                const gameResult = document.querySelector('.gameresult');
+                let count = 0;
+                let flash = true;
+                let interval;
+                interval = setInterval(()=>{
+                    gameResult.style.visibility = flash ? 'hidden' : 'visible';
+                    flash = !flash;
+                    count++;
+                    if(count === 8){
+                        clearInterval(interval);
+                    }
+                },50) 
+            }
+            //winning sound 
+            function winningsound(){
+                const win = new Audio('mixkit-game-bonus-reached-2065.wav')
+                win.play();
+            }
+            function loosesound(){
+                const lose = new Audio('mixkit-video-game-bomb-alert-2803.wav');
+                lose.play();
+            }
+            function tiesound(){
+                 const tie = new Audio('game-start-6104.mp3');
+                 tie.play();
+            }
+        function pickcomputermove(){
+            const randomvalue = Math.random();
+            let computermove = '';
+            if(randomvalue >= 0 && randomvalue < 1 / 3 ){
+                computermove = 'Rock';
+            }else if(randomvalue >= 1 / 3 && randomvalue < 2 / 3){
+                computermove = 'Paper';
+            }else if(randomvalue >= 2 /3 && randomvalue < 1){
+                computermove = 'Scissors';
+            }
+            return computermove;
+        }
+        //adding keypress events to play game
+        const container = document.querySelector('body');
+        container.addEventListener('keydown',(event)=>{
+            if(event.key === 'r'){
+                playgame('Rock');
+            }else if(event.key === 'p'){
+                playgame('Paper');
+            }else if(event.key === 's'){
+                playgame('Scissors');
+            }
+        })
+    </script>
+    <body>
+</html>
